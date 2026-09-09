@@ -2,10 +2,6 @@ import streamlit as st
 import pandas as pd
 import os
 
-# =========================================================
-# CONFIGURAÇÃO DA PÁGINA
-# =========================================================
-
 st.set_page_config(
     page_title="AutoCadastro PRO",
     page_icon="🚗",
@@ -15,10 +11,6 @@ st.set_page_config(
 
 ARQUIVO = "carros.csv"
 
-
-# =========================================================
-# IMAGENS
-# =========================================================
 
 IMAGEM_HERO = (
     "https://images.unsplash.com/"
@@ -32,11 +24,6 @@ IMAGEM_FROTA = (
     "?auto=format&fit=crop&w=1200&q=85"
 )
 
-
-# =========================================================
-# CSS
-# =========================================================
-
 st.markdown("""
 <style>
 
@@ -44,20 +31,11 @@ st.markdown("""
 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap'
 );
 
-/* =========================================================
-FONTE
-========================================================= */
-
 html,
 body,
 [class*="css"] {
     font-family: 'Poppins', sans-serif;
 }
-
-
-/* =========================================================
-FUNDO PRINCIPAL
-========================================================= */
 
 .stApp {
     background:
@@ -69,21 +47,12 @@ FUNDO PRINCIPAL
         );
 }
 
-
-/* =========================================================
-ÁREA PRINCIPAL
-========================================================= */
-
 .block-container {
     max-width: 1400px;
     padding-top: 2rem;
     padding-bottom: 3rem;
 }
 
-
-/* =========================================================
-SIDEBAR
-========================================================= */
 
 [data-testid="stSidebar"] {
     background:
@@ -102,10 +71,6 @@ SIDEBAR
 }
 
 
-/* =========================================================
-LOGO
-========================================================= */
-
 .logo-title {
     font-size: 28px;
     font-weight: 800;
@@ -121,10 +86,6 @@ LOGO
 }
 
 
-/* =========================================================
-TÍTULOS
-========================================================= */
-
 .page-title {
     font-size: 38px;
     font-weight: 800;
@@ -138,10 +99,6 @@ TÍTULOS
     margin-bottom: 30px;
 }
 
-
-/* =========================================================
-HERO
-========================================================= */
 
 .hero-container {
     position: relative;
@@ -223,9 +180,6 @@ HERO
 }
 
 
-/* =========================================================
-CARDS
-========================================================= */
 
 .info-card {
     background: #FFFFFF;
@@ -265,11 +219,6 @@ CARDS
     margin-top: 5px;
 }
 
-
-/* =========================================================
-CARD ESCURO
-========================================================= */
-
 .dark-card {
     background:
         linear-gradient(
@@ -297,10 +246,6 @@ CARD ESCURO
 }
 
 
-/* =========================================================
-FORMULÁRIO
-========================================================= */
-
 [data-testid="stForm"] {
     background:
         rgba(255,255,255,0.85);
@@ -316,10 +261,6 @@ FORMULÁRIO
         0 10px 30px rgba(0,0,0,0.08);
 }
 
-
-/* =========================================================
-LABELS DOS CAMPOS
-========================================================= */
 
 [data-testid="stWidgetLabel"],
 [data-testid="stWidgetLabel"] label,
@@ -337,11 +278,6 @@ LABELS DOS CAMPOS
 
     font-weight: 700 !important;
 }
-
-
-/* =========================================================
-INPUTS
-========================================================= */
 
 .stTextInput input,
 .stNumberInput input,
@@ -379,11 +315,6 @@ textarea::placeholder {
     opacity: 1 !important;
 }
 
-
-/* =========================================================
-SELECTBOX - CORREÇÃO DEFINITIVA
-========================================================= */
-
 /* Caixa principal */
 
 [data-baseweb="select"] > div {
@@ -395,8 +326,6 @@ SELECTBOX - CORREÇÃO DEFINITIVA
     border-radius: 12px !important;
 }
 
-
-/* TEXTO DO VEÍCULO SELECIONADO */
 
 [data-baseweb="select"] > div * {
     color: #FFFFFF !important;
@@ -440,10 +369,6 @@ SELECTBOX - CORREÇÃO DEFINITIVA
 }
 
 
-/* =========================================================
-MENU ABERTO DO SELECTBOX
-========================================================= */
-
 [data-baseweb="popover"] {
     background-color: #2F323C !important;
 }
@@ -467,10 +392,6 @@ MENU ABERTO DO SELECTBOX
     color: #FFFFFF !important;
 }
 
-
-/* =========================================================
-BOTÕES
-========================================================= */
 
 .stButton > button,
 div[data-testid="stFormSubmitButton"] > button {
@@ -516,10 +437,6 @@ div[data-testid="stFormSubmitButton"] > button:hover {
 }
 
 
-/* =========================================================
-TABELA
-========================================================= */
-
 [data-testid="stDataFrame"] {
     background: #FFFFFF;
 
@@ -530,11 +447,6 @@ TABELA
     border:
         1px solid #B8C391;
 }
-
-
-/* =========================================================
-RODAPÉ
-========================================================= */
 
 .footer {
     margin-top: 50px;
@@ -548,10 +460,6 @@ RODAPÉ
     font-weight: 600;
 }
 
-
-/* =========================================================
-RESPONSIVO
-========================================================= */
 
 @media (max-width: 768px) {
 
@@ -580,10 +488,6 @@ RESPONSIVO
 </style>
 """, unsafe_allow_html=True)
 
-
-# =========================================================
-# FUNÇÕES
-# =========================================================
 
 def carregar_dados():
 
@@ -621,14 +525,8 @@ def salvar_dados(dados):
     )
 
 
-# =========================================================
-# CARREGAR DADOS
-# =========================================================
-
 df = carregar_dados()
 
-
-# Garantir colunas necessárias
 
 colunas_necessarias = [
     "Marca",
@@ -648,8 +546,6 @@ for coluna in colunas_necessarias:
         df[coluna] = ""
 
 
-# Converter valores
-
 df["Valor"] = pd.to_numeric(
     df["Valor"],
     errors="coerce"
@@ -660,10 +556,6 @@ df["Quilometragem"] = pd.to_numeric(
     errors="coerce"
 ).fillna(0)
 
-
-# =========================================================
-# SIDEBAR
-# =========================================================
 
 st.sidebar.markdown(
 """
@@ -697,10 +589,6 @@ st.sidebar.caption(
     "AutoCadastro PRO • 2026"
 )
 
-
-# =========================================================
-# DASHBOARD
-# =========================================================
 
 if menu == "🏠 Dashboard":
 
@@ -874,10 +762,6 @@ da sua frota de maneira moderna e profissional.
         )
 
 
-# =========================================================
-# CADASTRAR CARRO
-# =========================================================
-
 elif menu == "➕ Cadastrar Carro":
 
     st.markdown(
@@ -1014,10 +898,6 @@ Adicione um novo veículo ao seu AutoCadastro PRO.
                 "⚠️ Preencha Marca, Modelo e Placa."
             )
 
-
-# =========================================================
-# CARROS CADASTRADOS
-# =========================================================
 
 elif menu == "🚙 Carros Cadastrados":
 
