@@ -3,13 +3,13 @@ import pandas as pd
 import os
 
 st.set_page_config(
-    page_title="AutoCadastro PRO",
+    page_title="",
     page_icon="🐱",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-ARQUIVO = "carros.csv"
+ARQUIVO = "sla.csv"
 
 
 IMAGEM_HERO = (
@@ -788,36 +788,22 @@ Adicione um novo veículo ao seu AutoCadastro PRO.
 
         with col1:
 
-            marca = st.text_input(
-                "🏷️ Marca"
-            )
+            nome_pet = st.text_input("🐶 Nome do Pet")
 
-            modelo = st.text_input(
-                "🚗 Modelo"
-            )
+            nome_tutor = st.text_input("👤 Nome do Tutor")
 
-            ano = st.number_input(
-                "📅 Ano",
-                min_value=1900,
-                max_value=2035,
-                value=2024,
-                step=1
-            )
+            telefone = st.text_input("📱 Telefone")
 
-            cor = st.selectbox(
-                "🎨 Cor",
+            especie = st.selectbox(
+                "🐾 Espécie",
                 [
-                    "Verde Oliva",
-                    "Preto",
-                    "Branco",
-                    "Prata",
-                    "Cinza",
-                    "Vermelho",
-                    "Azul",
-                    "Amarelo",
+                    "Cachorro",
+                    "Gato",
+                    "Ave",
+                    "Coelho",
                     "Outro"
                 ]
-            )
+                )
 
 
         with col2:
