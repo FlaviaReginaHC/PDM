@@ -3,26 +3,27 @@ import pandas as pd
 import os
 
 st.set_page_config(
-    page_title="",
-    page_icon="🐱",
+    page_title="PetShop PRO",
+    page_icon="🐾",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-ARQUIVO = "sla.csv"
+ARQUIVO = "pets.csv"
 
 
 IMAGEM_HERO = (
     "https://images.unsplash.com/"
-    "photo-1492144534655-ae79c964c9d7"
+    "photo-1552053831-71594a27632d"
     "?auto=format&fit=crop&w=1800&q=90"
 )
 
-IMAGEM_FROTA = (
+IMAGEM_PETS = (
     "https://images.unsplash.com/"
-    "photo-1502877338535-766e1452684a"
+    "photo-1450778869180-41d0601e046e"
     "?auto=format&fit=crop&w=1200&q=85"
 )
+
 
 st.markdown("""
 <style>
@@ -41,9 +42,9 @@ body,
     background:
         linear-gradient(
             135deg,
-            #F0F0E5 0%,
-            #E1E4C8 50%,
-            #D4DCB5 100%
+            #F5EBDD 0%,
+            #E8D2B5 50%,
+            #D8B98C 100%
         );
 }
 
@@ -54,16 +55,18 @@ body,
 }
 
 
+/* SIDEBAR */
+
 [data-testid="stSidebar"] {
     background:
         linear-gradient(
             180deg,
-            #162630,
-            #223944
+            #3B2418,
+            #5A3422
         );
 
     border-right:
-        2px solid #77864B;
+        2px solid #C47A44;
 }
 
 [data-testid="stSidebar"] * {
@@ -81,24 +84,28 @@ body,
 .logo-subtitle {
     font-size: 11px;
     font-weight: 700;
-    color: #BFCB9C !important;
+    color: #E7B887 !important;
     letter-spacing: 1px;
 }
 
 
+/* TÍTULOS */
+
 .page-title {
     font-size: 38px;
     font-weight: 800;
-    color: #26311F !important;
+    color: #4A2C20 !important;
     margin-bottom: 5px;
 }
 
 .page-subtitle {
     font-size: 17px;
-    color: #46513B !important;
+    color: #6B4A38 !important;
     margin-bottom: 30px;
 }
 
+
+/* HERO */
 
 .hero-container {
     position: relative;
@@ -112,7 +119,7 @@ body,
     background-position: center;
 
     box-shadow:
-        0 15px 35px rgba(0,0,0,0.22);
+        0 15px 35px rgba(70,40,20,0.25);
 }
 
 .hero-overlay {
@@ -122,9 +129,9 @@ body,
     background:
         linear-gradient(
             90deg,
-            rgba(14,28,38,0.97) 0%,
-            rgba(14,28,38,0.86) 45%,
-            rgba(14,28,38,0.18) 100%
+            rgba(55,32,22,0.97) 0%,
+            rgba(70,40,25,0.86) 45%,
+            rgba(70,40,25,0.18) 100%
         );
 }
 
@@ -141,7 +148,7 @@ body,
 .hero-number {
     font-size: 70px;
     font-weight: 800;
-    color: #A4D080 !important;
+    color: #E8A15A !important;
     line-height: 1;
 }
 
@@ -156,7 +163,7 @@ body,
 
 .hero-text {
     font-size: 17px;
-    color: #E8EDDE !important;
+    color: #F6E9D8 !important;
 
     margin-top: 20px;
     line-height: 1.7;
@@ -171,7 +178,7 @@ body,
 
     border-radius: 30px;
 
-    background: #6E8040;
+    background: #B86635;
 
     color: #FFFFFF !important;
 
@@ -180,9 +187,10 @@ body,
 }
 
 
+/* CARDS */
 
 .info-card {
-    background: #FFFFFF;
+    background: #FFF9F1;
 
     border-radius: 22px;
 
@@ -191,10 +199,10 @@ body,
     min-height: 170px;
 
     border:
-        1px solid rgba(111,128,63,0.30);
+        1px solid rgba(180,105,55,0.30);
 
     box-shadow:
-        0 10px 25px rgba(0,0,0,0.08);
+        0 10px 25px rgba(80,45,25,0.10);
 }
 
 .card-icon {
@@ -205,7 +213,7 @@ body,
     font-size: 34px;
     font-weight: 800;
 
-    color: #26311F !important;
+    color: #4A2C20 !important;
 
     margin-top: 10px;
 }
@@ -214,17 +222,20 @@ body,
     font-size: 14px;
     font-weight: 700;
 
-    color: #566248 !important;
+    color: #75563F !important;
 
     margin-top: 5px;
 }
+
+
+/* CARD ESCURA */
 
 .dark-card {
     background:
         linear-gradient(
             135deg,
-            #152631,
-            #233C48
+            #3A2419,
+            #60402D
         );
 
     border-radius: 24px;
@@ -232,7 +243,7 @@ body,
     padding: 30px;
 
     box-shadow:
-        0 12px 30px rgba(0,0,0,0.16);
+        0 12px 30px rgba(60,35,20,0.18);
 }
 
 .dark-card h2 {
@@ -241,26 +252,30 @@ body,
 }
 
 .dark-card p {
-    color: #E2E9DA !important;
+    color: #F0DFCC !important;
     line-height: 1.7;
 }
 
 
+/* FORMULÁRIO */
+
 [data-testid="stForm"] {
     background:
-        rgba(255,255,255,0.85);
+        rgba(255,249,241,0.90);
 
     padding: 30px;
 
     border-radius: 25px;
 
     border:
-        1px solid #B8C391;
+        1px solid #CDA77D;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.08);
+        0 10px 30px rgba(80,45,25,0.10);
 }
 
+
+/* LABELS */
 
 [data-testid="stWidgetLabel"],
 [data-testid="stWidgetLabel"] label,
@@ -270,7 +285,7 @@ body,
 .stNumberInput label,
 .stSelectbox label,
 .stTextArea label {
-    color: #26311F !important;
+    color: #4A2C20 !important;
 
     opacity: 1 !important;
 
@@ -279,18 +294,21 @@ body,
     font-weight: 700 !important;
 }
 
+
+/* INPUTS */
+
 .stTextInput input,
 .stNumberInput input,
 .stTextArea textarea {
     background-color: #FFFFFF !important;
 
-    color: #202820 !important;
+    color: #3A2A22 !important;
 
     -webkit-text-fill-color:
-        #202820 !important;
+        #3A2A22 !important;
 
     border:
-        2px solid #7C8956 !important;
+        2px solid #B9825B !important;
 
     border-radius: 12px !important;
 
@@ -303,29 +321,29 @@ body,
 .stNumberInput input:focus,
 .stTextArea textarea:focus {
     border:
-        2px solid #556B2F !important;
+        2px solid #A4512B !important;
 
     box-shadow:
-        0 0 0 3px rgba(85,107,47,0.15) !important;
+        0 0 0 3px rgba(164,81,43,0.15) !important;
 }
 
 input::placeholder,
 textarea::placeholder {
-    color: #6A7060 !important;
+    color: #806D5E !important;
     opacity: 1 !important;
 }
 
-/* Caixa principal */
+
+/* SELECTBOX */
 
 [data-baseweb="select"] > div {
-    background-color: #2F323C !important;
+    background-color: #5A4030 !important;
 
     border:
-        2px solid #687548 !important;
+        2px solid #B9825B !important;
 
     border-radius: 12px !important;
 }
-
 
 [data-baseweb="select"] > div * {
     color: #FFFFFF !important;
@@ -336,9 +354,6 @@ textarea::placeholder {
     opacity: 1 !important;
 }
 
-
-/* Input interno */
-
 [data-baseweb="select"] input {
     color: #FFFFFF !important;
 
@@ -346,39 +361,29 @@ textarea::placeholder {
         #FFFFFF !important;
 }
 
-
-/* Valor selecionado */
-
 [data-baseweb="select"] [class*="singleValue"] {
     color: #FFFFFF !important;
 }
-
-
-/* Seta */
 
 [data-baseweb="select"] svg {
     fill: #FFFFFF !important;
     color: #FFFFFF !important;
 }
 
-
-/* Hover */
-
 [data-baseweb="select"] > div:hover {
-    border-color: #A4B66A !important;
+    border-color: #D9965D !important;
 }
 
-
 [data-baseweb="popover"] {
-    background-color: #2F323C !important;
+    background-color: #5A4030 !important;
 }
 
 [data-baseweb="menu"] {
-    background-color: #2F323C !important;
+    background-color: #5A4030 !important;
 }
 
 [role="option"] {
-    background-color: #2F323C !important;
+    background-color: #5A4030 !important;
 
     color: #FFFFFF !important;
 
@@ -387,19 +392,21 @@ textarea::placeholder {
 }
 
 [role="option"]:hover {
-    background-color: #52632D !important;
+    background-color: #8A5738 !important;
 
     color: #FFFFFF !important;
 }
 
+
+/* BOTÕES */
 
 .stButton > button,
 div[data-testid="stFormSubmitButton"] > button {
     background:
         linear-gradient(
             135deg,
-            #52632D,
-            #788B48
+            #A4512B,
+            #C97942
         ) !important;
 
     color: #FFFFFF !important;
@@ -418,7 +425,7 @@ div[data-testid="stFormSubmitButton"] > button {
     font-weight: 700 !important;
 
     box-shadow:
-        0 8px 18px rgba(82,99,45,0.25);
+        0 8px 18px rgba(150,75,40,0.25);
 }
 
 .stButton > button:hover,
@@ -426,8 +433,8 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     background:
         linear-gradient(
             135deg,
-            #3E4E23,
-            #647738
+            #873F22,
+            #A95D31
         ) !important;
 
     color: #FFFFFF !important;
@@ -437,29 +444,36 @@ div[data-testid="stFormSubmitButton"] > button:hover {
 }
 
 
+/* TABELA */
+
 [data-testid="stDataFrame"] {
-    background: #FFFFFF;
+    background: #FFF9F1;
 
     border-radius: 18px;
 
     overflow: hidden;
 
     border:
-        1px solid #B8C391;
+        1px solid #CDA77D;
 }
+
+
+/* RODAPÉ */
 
 .footer {
     margin-top: 50px;
 
     text-align: center;
 
-    color: #536044 !important;
+    color: #72513B !important;
 
     font-size: 14px;
 
     font-weight: 600;
 }
 
+
+/* RESPONSIVIDADE */
 
 @media (max-width: 768px) {
 
@@ -489,16 +503,20 @@ div[data-testid="stFormSubmitButton"] > button:hover {
 """, unsafe_allow_html=True)
 
 
+# ==============================
+# FUNÇÕES
+# ==============================
+
 def carregar_dados():
 
     colunas = [
-        "Marca",
-        "Modelo",
-        "Ano",
-        "Cor",
-        "Placa",
-        "Quilometragem",
-        "Valor",
+        "Nome",
+        "Espécie",
+        "Idade",
+        "Pelagem",
+        "Raça",
+        "Peso",
+        "Serviço",
         "Observações"
     ]
 
@@ -529,15 +547,16 @@ df = carregar_dados()
 
 
 colunas_necessarias = [
-    "Marca",
-    "Modelo",
-    "Ano",
-    "Cor",
-    "Placa",
-    "Quilometragem",
-    "Valor",
+    "Nome",
+    "Espécie",
+    "Idade",
+    "Pelagem",
+    "Raça",
+    "Peso",
+    "Serviço",
     "Observações"
 ]
+
 
 for coluna in colunas_necessarias:
 
@@ -546,49 +565,62 @@ for coluna in colunas_necessarias:
         df[coluna] = ""
 
 
-df["Valor"] = pd.to_numeric(
-    df["Valor"],
+df["Idade"] = pd.to_numeric(
+    df["Idade"],
     errors="coerce"
 ).fillna(0)
 
-df["Quilometragem"] = pd.to_numeric(
-    df["Quilometragem"],
+
+df["Peso"] = pd.to_numeric(
+    df["Peso"],
     errors="coerce"
 ).fillna(0)
 
+
+# ==============================
+# SIDEBAR
+# ==============================
 
 st.sidebar.markdown(
 """
 <div class="logo-title">
-🚗 AutoCadastro
+🐾 PetShop
 </div>
 
 <div class="logo-subtitle">
-GESTÃO INTELIGENTE DE VEÍCULOS
+CUIDADO E CARINHO PARA SEU PET
 </div>
 """,
     unsafe_allow_html=True
 )
 
-st.sidebar.markdown("<br>", unsafe_allow_html=True)
+st.sidebar.markdown(
+    "<br>",
+    unsafe_allow_html=True
+)
 
 
 menu = st.sidebar.radio(
     "NAVEGAÇÃO",
     [
         "🏠 Dashboard",
-        "➕ Cadastrar Carro",
-        "🚙 Carros Cadastrados"
+        "➕ Cadastrar Pet",
+        "🐾 Pets Cadastrados"
     ]
 )
 
 
 st.sidebar.markdown("---")
 
+
 st.sidebar.caption(
-    "AutoCadastro PRO • 2026"
+    "PetShop PRO • 2026"
 )
 
+
+# ==============================
+# DASHBOARD
+# ==============================
 
 if menu == "🏠 Dashboard":
 
@@ -606,18 +638,18 @@ style="background-image: url('{IMAGEM_HERO}');">
 </div>
 
 <div class="hero-title">
-Sua frota.<br>
-Seu controle.
+Seu pet.<br>
+Seu cuidado.
 </div>
 
 <div class="hero-text">
-Tenha todos os seus veículos organizados em um único lugar.<br>
-Cadastre, consulte e acompanhe sua frota de forma simples,
-rápida e profissional.
+Tenha todos os seus pets organizados em um único lugar.<br>
+Cadastre, consulte e acompanhe as informações
+de forma simples, rápida e especial.
 </div>
 
 <div class="hero-badge">
-🚗 GESTÃO INTELIGENTE
+🐾 CUIDADO COM AMOR
 </div>
 
 </div>
@@ -626,25 +658,29 @@ rápida e profissional.
 """,
         unsafe_allow_html=True
     )
+
 
     st.markdown(
 """
 <div class="page-title">
-📊 Visão geral da sua frota
+📊 Visão geral dos seus pets
 </div>
 
 <div class="page-subtitle">
-Acompanhe seus veículos e mantenha tudo organizado.
+Acompanhe seus animais e mantenha tudo organizado.
 </div>
 """,
         unsafe_allow_html=True
     )
 
-    total_carros = len(df)
 
-    valor_total = df["Valor"].sum()
+    total_pets = len(df)
 
-    km_total = df["Quilometragem"].sum()
+    peso_total = df["Peso"].sum()
+
+    total_servicos = len(
+        df[df["Serviço"].astype(str).str.strip() != ""]
+    )
 
 
     col1, col2, col3 = st.columns(3)
@@ -657,15 +693,15 @@ f"""
 <div class="info-card">
 
 <div class="card-icon">
-🚗
+🐶
 </div>
 
 <div class="card-number">
-{total_carros}
+{total_pets}
 </div>
 
 <div class="card-label">
-VEÍCULOS CADASTRADOS
+PETS CADASTRADOS
 </div>
 
 </div>
@@ -681,15 +717,15 @@ f"""
 <div class="info-card">
 
 <div class="card-icon">
-💰
+⚖️
 </div>
 
 <div class="card-number">
-R$ {valor_total:,.2f}
+{peso_total:,.1f} kg
 </div>
 
 <div class="card-label">
-VALOR TOTAL DA FROTA
+PESO TOTAL REGISTRADO
 </div>
 
 </div>
@@ -705,15 +741,15 @@ f"""
 <div class="info-card">
 
 <div class="card-icon">
-🛣️
+✂️
 </div>
 
 <div class="card-number">
-{km_total:,.0f} km
+{total_servicos}
 </div>
 
 <div class="card-label">
-QUILOMETRAGEM REGISTRADA
+ATENDIMENTOS REGISTRADOS
 </div>
 
 </div>
@@ -722,7 +758,10 @@ QUILOMETRAGEM REGISTRADA
         )
 
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown(
+        "<br>",
+        unsafe_allow_html=True
+    )
 
 
     coluna1, coluna2 = st.columns([1.1, 1])
@@ -735,17 +774,17 @@ QUILOMETRAGEM REGISTRADA
 <div class="dark-card">
 
 <h2>
-🚀 Controle profissional
+🐾 Cuidado especial
 </h2>
 
 <p>
-O AutoCadastro PRO permite manter todos os seus veículos
+O PetShop PRO permite manter todos os seus pets
 organizados em um único lugar.
 </p>
 
 <p>
 Cadastre, consulte, pesquise e acompanhe as informações
-da sua frota de maneira moderna e profissional.
+dos seus animais de maneira simples, moderna e prática.
 </p>
 
 </div>
@@ -757,21 +796,25 @@ da sua frota de maneira moderna e profissional.
     with coluna2:
 
         st.image(
-            IMAGEM_FROTA,
+            IMAGEM_PETS,
             use_container_width=True
         )
 
 
-elif menu == "➕ Cadastrar Carro":
+# ==============================
+# CADASTRAR PET
+# ==============================
+
+elif menu == "➕ Cadastrar Pet":
 
     st.markdown(
 """
 <div class="page-title">
-➕ Novo veículo
+➕ Novo pet
 </div>
 
 <div class="page-subtitle">
-Adicione um novo veículo ao seu AutoCadastro PRO.
+Adicione um novo animal ao seu PetShop PRO.
 </div>
 """,
         unsafe_allow_html=True
@@ -779,7 +822,7 @@ Adicione um novo veículo ao seu AutoCadastro PRO.
 
 
     with st.form(
-        "cadastro_carro",
+        "cadastro_pet",
         clear_on_submit=True
     ):
 
@@ -788,43 +831,76 @@ Adicione um novo veículo ao seu AutoCadastro PRO.
 
         with col1:
 
-            nome_pet = st.text_input("🐶 Nome do Pet")
+            nome = st.text_input(
+                "🐾 Nome do pet"
+            )
 
-            nome_tutor = st.text_input("👤 Nome do Tutor")
-
-            telefone = st.text_input("📱 Telefone")
 
             especie = st.selectbox(
-                "🐾 Espécie",
+                "🐶 Espécie",
                 [
                     "Cachorro",
                     "Gato",
-                    "Ave",
                     "Coelho",
+                    "Hamster",
+                    "Ave",
                     "Outro"
                 ]
-                )
+            )
+
+
+            idade = st.number_input(
+                "🎂 Idade",
+                min_value=0,
+                max_value=50,
+                value=1,
+                step=1
+            )
+
+
+            pelagem = st.selectbox(
+                "🎨 Pelagem",
+                [
+                    "Preta",
+                    "Branca",
+                    "Marrom",
+                    "Caramelo",
+                    "Cinza",
+                    "Dourada",
+                    "Mesclada",
+                    "Outra"
+                ]
+            )
 
 
         with col2:
 
-            placa = st.text_input(
-                "🔢 Placa"
+            raca = st.text_input(
+                "🏷️ Raça"
             )
 
-            quilometragem = st.number_input(
-                "🛣️ Quilometragem",
-                min_value=0,
-                value=0,
-                step=100
-            )
 
-            valor = st.number_input(
-                "💰 Valor do Veículo",
+            peso = st.number_input(
+                "⚖️ Peso (kg)",
                 min_value=0.0,
-                value=0.0,
-                step=1000.0
+                value=1.0,
+                step=0.5
             )
+
+
+            servico = st.selectbox(
+                "✂️ Serviço",
+                [
+                    "Banho",
+                    "Tosa",
+                    "Banho e Tosa",
+                    "Consulta",
+                    "Vacinação",
+                    "Higiene",
+                    "Outro"
+                ]
+            )
+
 
             observacoes = st.text_area(
                 "📝 Observações"
@@ -832,27 +908,26 @@ Adicione um novo veículo ao seu AutoCadastro PRO.
 
 
         cadastrar = st.form_submit_button(
-            "💾 CADASTRAR VEÍCULO"
+            "💾 CADASTRAR PET"
         )
 
 
     if cadastrar:
 
         if (
-            marca.strip()
-            and modelo.strip()
-            and placa.strip()
+            nome.strip()
+            and raca.strip()
         ):
 
-            novo_carro = pd.DataFrame(
+            novo_pet = pd.DataFrame(
                 [{
-                    "Marca": marca.strip(),
-                    "Modelo": modelo.strip(),
-                    "Ano": int(ano),
-                    "Cor": cor,
-                    "Placa": placa.strip().upper(),
-                    "Quilometragem": int(quilometragem),
-                    "Valor": float(valor),
+                    "Nome": nome.strip(),
+                    "Espécie": especie,
+                    "Idade": int(idade),
+                    "Pelagem": pelagem,
+                    "Raça": raca.strip(),
+                    "Peso": float(peso),
+                    "Serviço": servico,
                     "Observações": observacoes.strip()
                 }]
             )
@@ -861,7 +936,7 @@ Adicione um novo veículo ao seu AutoCadastro PRO.
             df = pd.concat(
                 [
                     df,
-                    novo_carro
+                    novo_pet
                 ],
                 ignore_index=True
             )
@@ -871,7 +946,7 @@ Adicione um novo veículo ao seu AutoCadastro PRO.
 
 
             st.success(
-                "🚗 Veículo cadastrado com sucesso!"
+                "🐾 Pet cadastrado com sucesso!"
             )
 
 
@@ -881,20 +956,24 @@ Adicione um novo veículo ao seu AutoCadastro PRO.
         else:
 
             st.warning(
-                "⚠️ Preencha Marca, Modelo e Placa."
+                "⚠️ Preencha o Nome e a Raça do pet."
             )
 
 
-elif menu == "🚙 Carros Cadastrados":
+# ==============================
+# PETS CADASTRADOS
+# ==============================
+
+elif menu == "🐾 Pets Cadastrados":
 
     st.markdown(
 """
 <div class="page-title">
-🚙 Minha frota
+🐾 Meus pets
 </div>
 
 <div class="page-subtitle">
-Consulte e pesquise todos os veículos cadastrados.
+Consulte e pesquise todos os animais cadastrados.
 </div>
 """,
         unsafe_allow_html=True
@@ -908,12 +987,12 @@ Consulte e pesquise todos os veículos cadastrados.
 <div class="dark-card">
 
 <h2>
-🚗 Nenhum veículo cadastrado
+🐾 Nenhum pet cadastrado
 </h2>
 
 <p>
-Sua garagem ainda está vazia.
-Cadastre seu primeiro veículo para começar.
+Sua lista de pets ainda está vazia.
+Cadastre seu primeiro animal para começar.
 </p>
 
 </div>
@@ -925,8 +1004,8 @@ Cadastre seu primeiro veículo para começar.
     else:
 
         busca = st.text_input(
-            "🔎 Pesquisar veículo",
-            placeholder="Digite marca, modelo, placa ou cor..."
+            "🔎 Pesquisar pet",
+            placeholder="Digite nome, espécie, raça ou pelagem..."
         )
 
 
@@ -959,29 +1038,33 @@ Cadastre seu primeiro veículo para começar.
         )
 
 
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown(
+            "<br>",
+            unsafe_allow_html=True
+        )
 
 
-        opcoes_carros = df.index.tolist()
+        opcoes_pets = df.index.tolist()
 
 
-        carro_excluir = st.selectbox(
-            "🗑️ Selecione um veículo para excluir",
-            options=opcoes_carros,
+        pet_excluir = st.selectbox(
+            "🗑️ Selecione um pet para excluir",
+            options=opcoes_pets,
             format_func=lambda indice:
-                f"{df.loc[indice, 'Marca']} "
-                f"{df.loc[indice, 'Modelo']} - "
-                f"{df.loc[indice, 'Placa']}"
+                f"{df.loc[indice, 'Nome']} "
+                f"({df.loc[indice, 'Espécie']}) - "
+                f"{df.loc[indice, 'Raça']}"
         )
 
 
         if st.button(
-            "🗑️ EXCLUIR VEÍCULO"
+            "🗑️ EXCLUIR PET"
         ):
 
             df = df.drop(
-                carro_excluir
+                pet_excluir
             )
+
 
             df = df.reset_index(
                 drop=True
@@ -992,21 +1075,25 @@ Cadastre seu primeiro veículo para começar.
 
 
             st.success(
-                "🚗 Veículo excluído com sucesso!"
+                "🐾 Pet excluído com sucesso!"
             )
 
 
             st.rerun()
 
+
+# ==============================
+# FOOTER
+# ==============================
+
 st.markdown(
 """
 <div class="footer">
 
-🚗 AutoCadastro PRO<br>
-Gestão inteligente de veículos
+🐾 PetShop PRO<br>
+Cuidado e carinho para seu pet
 
 </div>
 """,
     unsafe_allow_html=True
-)
-
+        )
